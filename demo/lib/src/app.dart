@@ -46,7 +46,7 @@ class DemoApp extends StatelessWidget {
                 bottom: 8,
               ),
               child: MouseRegion(
-                cursor: MaterialStateMouseCursor.clickable,
+                // cursor: MaterialStateMouseCursor.clickable,
                 child: GestureDetector(
                   onTap: () {
                     launch(katexUrl);
@@ -157,7 +157,7 @@ class DemoApp extends StatelessWidget {
               height: 1,
             ),
             MouseRegion(
-              cursor: MaterialStateMouseCursor.clickable,
+              // cursor: MaterialStateMouseCursor.clickable,
               child: GestureDetector(
                 onTap: () {
                   launch(organizationUrl);

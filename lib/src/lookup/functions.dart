@@ -7,6 +7,7 @@ import 'package:catex/src/parsing/functions/font.dart';
 import 'package:catex/src/parsing/functions/frac.dart';
 import 'package:catex/src/parsing/functions/hat.dart';
 import 'package:catex/src/parsing/functions/kern.dart';
+import 'package:catex/src/parsing/functions/matrix.dart';
 import 'package:catex/src/parsing/functions/raise_box.dart';
 import 'package:catex/src/parsing/functions/sqrt.dart';
 import 'package:catex/src/parsing/functions/styling.dart';
@@ -114,6 +115,8 @@ enum CaTeXFunction {
 
   /// `\mathbb{}` uses the [CaTeXFont.ams] font.
   mathbb,
+  // ignore: public_member_api_docs
+  matrix,
 }
 
 /// Names, i.e. control sequences that correspond to
@@ -130,13 +133,16 @@ const supportedFunctionNames = <String, CaTeXFunction>{
   r'\cal': CaTeXFunction.cal,
   r'\text': CaTeXFunction.text,
   r'\textnormal': CaTeXFunction.textNormal,
+  r'\mathrm': CaTeXFunction.textRm,
   r'\textrm': CaTeXFunction.textRm,
   r'\textsf': CaTeXFunction.textSf,
   r'\texttt': CaTeXFunction.textTt,
   r'\textbf': CaTeXFunction.textBf,
+  r'\mathbf': CaTeXFunction.textBf,
   r'\textmd': CaTeXFunction.textMd,
   r'\textit': CaTeXFunction.textIt,
   r'\textup': CaTeXFunction.textUp,
+  r'\begin{array}{cc}': CaTeXFunction.matrix,
   r'\textcolor': CaTeXFunction.textColor,
   '_': CaTeXFunction.sub,
   '^': CaTeXFunction.sup,
@@ -184,6 +190,7 @@ const List<CaTeXFunction> supportedMathFunctions = [
   CaTeXFunction.textIt,
   CaTeXFunction.textUp,
   CaTeXFunction.mathbb,
+  CaTeXFunction.matrix
 ];
 
 /// CaTeX functions that are available in text mode.
@@ -212,6 +219,7 @@ const List<CaTeXFunction> supportedTextFunctions = [
   CaTeXFunction.textMd,
   CaTeXFunction.textIt,
   CaTeXFunction.textUp,
+  CaTeXFunction.matrix
 ];
 
 /// Looks up the [FunctionNode] subclass for a given input.
@@ -222,6 +230,7 @@ const List<CaTeXFunction> supportedTextFunctions = [
 /// in math mode or in [supportedTextFunctions]
 /// in text mode. Otherwise, this function returns `null`.
 FunctionNode lookupFunction(ParsingContext context) {
+  // final inputList = context.input.replaceAll("\$\$", "\$").split('\$'),
   final input = context.input,
       mode = context.mode,
       function = supportedFunctionNames[input];
@@ -259,6 +268,8 @@ FunctionNode lookupFunction(ParsingContext context) {
       return BoxedNode(context);
     case CaTeXFunction.sqrt:
       return SqrtNode(context);
+    case CaTeXFunction.matrix:
+      return MatrixNode(context);
     case CaTeXFunction.raiseBox:
       return RaiseBoxNode(context);
     case CaTeXFunction.kern:
@@ -268,6 +279,7 @@ FunctionNode lookupFunction(ParsingContext context) {
     case CaTeXFunction.scriptStyle:
     case CaTeXFunction.scriptScriptStyle:
       return StylingNode(context);
+
     case CaTeXFunction.text:
     case CaTeXFunction.textNormal:
     case CaTeXFunction.textRm:

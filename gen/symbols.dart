@@ -472,6 +472,7 @@ Future<void> main(List<String> args) async {
   defineSymbol(math, main, bin, "\\u2212", "-");
   defineSymbol(math, main, bin, "\\u22c5", "\\\\cdot", true);
   defineSymbol(math, main, bin, "\\u2218", "\\\\circ");
+
   defineSymbol(math, main, bin, "\\u00f7", "\\\\div", true);
   defineSymbol(math, main, bin, "\\u00b1", "\\\\pm", true);
   defineSymbol(math, main, bin, "\\u00d7", "\\\\times", true);

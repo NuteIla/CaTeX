@@ -161,6 +161,7 @@ class _TextFieldEquationState extends State<_TextFieldEquation> {
   }
 }
 
+// ignore: public_member_api_docs
 class ToggleEquation extends StatefulWidget {
   const ToggleEquation(this.equation, {Key key}) : super(key: key);
 

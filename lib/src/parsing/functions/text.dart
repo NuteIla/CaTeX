@@ -32,12 +32,15 @@ class TextNode extends SingleChildNode<RenderText>
     // The different functions override different parts of the font style.
     switch (function) {
       case CaTeXFunction.text:
+        family = CaTeXFont.openSans.family;
+        break;
       case CaTeXFunction.textNormal:
       case CaTeXFunction.textRm:
         weight = FontWeight.normal;
         style = FontStyle.normal;
         family = CaTeXFont.main.family;
         break;
+
       case CaTeXFunction.textSf:
         family = CaTeXFont.sansSerif.family;
         break;

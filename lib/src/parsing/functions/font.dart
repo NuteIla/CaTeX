@@ -52,6 +52,7 @@ class FontNode extends SingleChildNode<RenderFont>
         style = FontStyle.normal;
         family = CaTeXFont.ams.family;
         break;
+
       default: // noop
     }
 

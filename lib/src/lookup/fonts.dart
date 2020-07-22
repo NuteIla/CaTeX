@@ -2,7 +2,9 @@
 ///
 /// Note that these are the fonts taken from the KaTeX project.
 enum CaTeXFont {
+  // ignore: public_member_api_docs
   ams,
+  // ignore: public_member_api_docs
   caligraphic,
   fraktur,
   main,
@@ -14,6 +16,7 @@ enum CaTeXFont {
   size3,
   size4,
   typewriter,
+  openSans,
 }
 
 /// Extension for [CaTeXFont]s that adds stringify functionality.
@@ -60,6 +63,9 @@ extension RetrieveFont on CaTeXFont {
         break;
       case CaTeXFont.typewriter:
         buffer.write('Typewriter');
+        break;
+      case CaTeXFont.openSans:
+        buffer.write('OpenSans');
         break;
       default:
         throw UnimplementedError();
