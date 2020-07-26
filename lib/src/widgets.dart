@@ -68,7 +68,8 @@ class _CaTeXState extends State<CaTeX> {
             textSize: DefaultTextStyle.of(context).style.fontSize * 1.21,
           ));
     } on CaTeXException catch (e) {
-      _exception = e;
+      Text(widget.input);
+      // _exception = e;
     }
   }
 
