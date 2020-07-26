@@ -68,13 +68,7 @@ class _CaTeXState extends State<CaTeX> {
             textSize: DefaultTextStyle.of(context).style.fontSize * 1.21,
           ));
     } on CaTeXException catch (e) {
-      // _exception = e;
-      _rootNode = Parser(widget.input, mode: CaTeXMode.text)
-          .parse()
-          .createWidget(defaultCaTeXContext.copyWith(
-            color: DefaultTextStyle.of(context).style.color,
-            textSize: DefaultTextStyle.of(context).style.fontSize * 1.21,
-          ));
+      _exception = e;
     }
   }
 
@@ -97,7 +91,7 @@ class _CaTeXState extends State<CaTeX> {
     if (_exception != null) {
       // Throwing the parsing exception here will make sure that it is
       // displayed by the Flutter ErrorWidget.
-      throw _exception;
+      // throw _exception;
     }
 
     // Rendering a full tree can be expensive and the tree never changes.
