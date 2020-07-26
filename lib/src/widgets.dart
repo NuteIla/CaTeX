@@ -68,8 +68,13 @@ class _CaTeXState extends State<CaTeX> {
             textSize: DefaultTextStyle.of(context).style.fontSize * 1.21,
           ));
     } on CaTeXException catch (e) {
-      Text(widget.input);
       // _exception = e;
+      _rootNode = Parser(widget.input, mode: CaTeXMode.text)
+          .parse()
+          .createWidget(defaultCaTeXContext.copyWith(
+            color: DefaultTextStyle.of(context).style.color,
+            textSize: DefaultTextStyle.of(context).style.fontSize * 1.21,
+          ));
     }
   }
 
