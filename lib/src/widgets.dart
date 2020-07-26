@@ -92,6 +92,7 @@ class _CaTeXState extends State<CaTeX> {
       // Throwing the parsing exception here will make sure that it is
       // displayed by the Flutter ErrorWidget.
       // throw _exception;
+      return Text(widget.input);
     }
 
     // Rendering a full tree can be expensive and the tree never changes.
