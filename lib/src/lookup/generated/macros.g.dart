@@ -18,6 +18,7 @@ const macros = <String, String>{
   '\\cos': 'cos',
   '\\tan': 'tan',
   '\\sec': 'sec',
+  '\\dfrac': '\\frac',
   '\\secinv': 'sec^{-1}',
   '\\taninv': 'tan^{-1}',
   '\\sininv': 'sin^{-1}',
