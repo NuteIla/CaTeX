@@ -25,9 +25,9 @@ class RenderSqrt extends RenderNode with SingleChildRenderNodeMixin {
     );
 
     _surdPainter.layout();
-    final childSize = sizeChildNode(child),
+    final childSize = sizeChildNode(child), //get dimension of input
         surdSize = _surdPainter.size,
-        height = max(surdSize.height, childSize.height);
+        height = max(surdSize.height, childSize.height); 
 
     child.positionNode(Offset(surdSize.width, height - childSize.height));
     renderSize = Size(surdSize.width + childSize.width, height);
@@ -36,7 +36,7 @@ class RenderSqrt extends RenderNode with SingleChildRenderNodeMixin {
   @override
   void render(Canvas canvas) {
     paintChildNode(child);
-    _surdPainter.paint(canvas, Offset.zero);
+    _surdPainter.paint(canvas, Offset.zero); 
 
     // Draws an overline.
     final h =

@@ -7,6 +7,7 @@ import 'package:catex/src/parsing/functions/font.dart';
 import 'package:catex/src/parsing/functions/frac.dart';
 import 'package:catex/src/parsing/functions/hat.dart';
 import 'package:catex/src/parsing/functions/kern.dart';
+import 'package:catex/src/parsing/functions/mathrm.dart';
 import 'package:catex/src/parsing/functions/matrix.dart';
 import 'package:catex/src/parsing/functions/raise_box.dart';
 import 'package:catex/src/parsing/functions/sqrt.dart';
@@ -117,6 +118,9 @@ enum CaTeXFunction {
   mathbb,
   // ignore: public_member_api_docs
   matrix,
+
+  /// `\mathRm{}` formats input as math symbols.
+  mathRm,
 }
 
 /// Names, i.e. control sequences that correspond to
@@ -133,7 +137,7 @@ const supportedFunctionNames = <String, CaTeXFunction>{
   r'\cal': CaTeXFunction.cal,
   r'\text': CaTeXFunction.text,
   r'\textnormal': CaTeXFunction.textNormal,
-  r'\mathrm': CaTeXFunction.textRm,
+  r'\mathrm': CaTeXFunction.mathRm,
   r'\textrm': CaTeXFunction.textRm,
   r'\textsf': CaTeXFunction.textSf,
   r'\texttt': CaTeXFunction.textTt,
@@ -183,6 +187,7 @@ const List<CaTeXFunction> supportedMathFunctions = [
   CaTeXFunction.text,
   CaTeXFunction.textNormal,
   CaTeXFunction.textRm,
+  CaTeXFunction.mathRm,
   CaTeXFunction.textSf,
   CaTeXFunction.textTt,
   CaTeXFunction.textBf,
@@ -283,6 +288,8 @@ FunctionNode lookupFunction(ParsingContext context) {
     case CaTeXFunction.text:
     case CaTeXFunction.textNormal:
     case CaTeXFunction.textRm:
+    case CaTeXFunction.mathRm:
+      return MathRmNode(context);
     case CaTeXFunction.textSf:
     case CaTeXFunction.textTt:
     case CaTeXFunction.textBf:
